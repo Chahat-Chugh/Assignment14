@@ -1,0 +1,24 @@
+<form #form = "ngForm" (ngSubmit) = "submit(form)">
+    <div class="form">
+        <label for="name">Name</label>
+        <input type="text" ngModel #name = "ngModel" name="name" id="name" required maxlength="30">
+        <div *ngIf = "name.touched && name.errors"> Name is required.</div>
+        <br>
+
+        <label for="website">Email</label>
+        <input type="text" ngModel #website = "ngModel" name="website" id="website" required pattern="^[A-Za-z0-9._%+-]+\.[a-z]{2,4}$" maxLength = "40"> 
+        <div *ngIf = "website.touched && website.errors">
+            <p *ngIf = "website.errors['required']">website is required.</p>
+            <p *ngIf = "website.errors['pattern']"> Invalid format.</p>
+        </div>
+        <br>
+    
+        <label for="address">Address</label>
+        <input type="text" ngModel #address = "ngModel" ngModel name="address" id="address" maxlength="30" required>
+        <div *ngIf = "address.touched && address.errors">Address is required.</div>
+        <br>
+        
+        <button class="submit" [disabled] = "form.invalid">Submit</button>
+
+    </div>    
+</form>

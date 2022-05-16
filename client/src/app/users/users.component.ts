@@ -27,25 +27,25 @@ export class UsersComponent implements OnInit {
     private customersService:CustomerService
     ){}
 
-  ngOnInit(){
-   
-    if(this.usersByCustomer.length !== 0)
-    {
-      this.showUsers = true;
-      this.usersByCustomer.forEach(
-        user => {
-          user.role = user.roles.name;
-        }
-      );
-      
-      this.load();
-      
-    }
-    else{
-      this.showUsers = false;
+  ngOnChanges(): void {
+      if(this.usersByCustomer.length !== 0)
+      {
+        this.showUsers = true;
+        this.usersByCustomer.forEach(
+          user => {
+            user.role = user.roles.name;
+          }
+        );
+        
+        this.load();
+        
+      }
+      else{
+        this.showUsers = false;
+      }
     }
 
-  }
+  ngOnInit(){}
 
   async loadUsers(){
       await this.usersService.getUsers().then(

@@ -6,7 +6,7 @@ import { UsersComponent } from './users/users.component';
 import { CustomersComponent } from './customers/customers.component';
 import { UsersTableComponent } from './users/users-table/users-table.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewUserComponent } from './users/new-user/new-user.component';
 import { CustomersTableComponent } from './customers/customers-table/customers-table.component';
 import { NewCustomerComponent } from './customers/new-customer/new-customer.component';
@@ -29,6 +29,7 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

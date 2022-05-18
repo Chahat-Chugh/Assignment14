@@ -1,5 +1,5 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { customer } from 'src/app/globals';
 
 @Component({
@@ -9,27 +9,24 @@ import { customer } from 'src/app/globals';
 })
 export class NewCustomerComponent implements OnInit {
 
+  form!: FormGroup;
   @Output() onSubmit = new EventEmitter();
+
+  constructor(private fb: FormBuilder){}
+  
   ngOnInit(): void {
+     this.form = this.fb.group({
+      name: [null,[Validators.required,Validators.maxLength(30)]],
+      website: [null,[Validators.required,Validators.maxLength(40),Validators.pattern("^[A-Za-z0-9._%+-]+\.[a-z]{2,4}$")]],
+      address: [null,[Validators.required,Validators.maxLength(30)]]
+    });
   }
 
-  submit(form: NgForm)
+  submit()
   {
-    const cust: customer = form.value;
+    const cust: customer = this.form.value;
     cust.created_on = new Date();
     cust.modified_on = new Date();
-  /*   const body = {
-      "name": cust.name,
-      "middleName": user.middlename,
-      "lastname": user.lastname,
-      "email": user.email,
-      "phone": user.phone,
-      "address": user.address,
-      "role": user.role,
-      "customerId": parseInt(user.customer as string),
-      "created_on": new Date(),
-      "modified_on": new Date()
-      }; */
     
     this.onSubmit.emit(cust);
   }

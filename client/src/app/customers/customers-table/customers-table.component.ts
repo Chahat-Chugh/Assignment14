@@ -21,7 +21,7 @@ export class CustomersTableComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    
       for(let key in this.customers[0])
     {
       if(key !== 'id')

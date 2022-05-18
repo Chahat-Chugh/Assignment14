@@ -18,6 +18,7 @@ export class CustomersComponent implements OnInit {
   constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
+    
   }
 
   async loadCustomers()
@@ -44,7 +45,7 @@ export class CustomersComponent implements OnInit {
   delete(value:{index: number,target: customer})
   {
     this.customers.splice(value.index,1);
-    this.customerService.deleteCustomer(value.target.id!);
+    this.customerService.deleteCustomer(value.target.id!).subscribe();
   }
 
   create(body:any)

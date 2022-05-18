@@ -1,8 +1,14 @@
-import { TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+
+  let fixture: ComponentFixture<AppComponent>;
+  let component: Component;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -12,24 +18,20 @@ describe('AppComponent', () => {
         AppComponent
       ],
     }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'client'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('client');
-  });
+  it('should display buttons',()=>{
+    let usersBtn = fixture.debugElement.query(By.css('.users'));
+    let customersBtn = fixture.debugElement.query(By.css('.customers'));
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('client app is running!');
-  });
+    expect(usersBtn.nativeElement.textContent).toEqual('Users');
+    expect(customersBtn.nativeElement.textContent).toEqual('Customers');
+  })
 });

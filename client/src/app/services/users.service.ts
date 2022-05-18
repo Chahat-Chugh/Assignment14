@@ -28,7 +28,7 @@ export class UsersService{
     
     delete(id:number)
     {
-      this.http.delete(my_URL+'/users'+`/${id}`).subscribe();
+      return this.http.delete(my_URL+'/users'+`/${id}`);
     }
 
 }

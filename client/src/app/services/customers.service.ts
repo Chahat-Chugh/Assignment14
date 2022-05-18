@@ -28,7 +28,7 @@ export class CustomerService {
 
   deleteCustomer(id:number)
   {
-    this.http.delete(my_URL+'/customers/'+id).subscribe();
+    return this.http.delete(my_URL+'/customers/'+id);
   }
 
   create(body:customer)

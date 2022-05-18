@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { User } from '../user.model';
 import { UsersService } from '../services/users.service';
 import { RolesService } from '../services/roles.service';
@@ -10,7 +10,7 @@ import { CustomerService } from '../services/customers.service';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit,OnChanges {
   
   @Input('users')usersByCustomer:any[] = [];
 
@@ -27,23 +27,27 @@ export class UsersComponent implements OnInit {
     private customersService:CustomerService
     ){}
 
+    ngOnChanges(): void {
+      if(this.usersByCustomer.length !== 0)
+      {
+        this.showUsers = true;
+        this.usersByCustomer.forEach(
+          user => {
+            user.role = user.roles.name;
+          }
+        );
+        
+        this.load();
+        
+      }
+      else{
+        this.showUsers = false;
+      }
+    }
+
   ngOnInit(){
-   
-    if(this.usersByCustomer.length !== 0)
-    {
-      this.showUsers = true;
-      this.usersByCustomer.forEach(
-        user => {
-          user.role = user.roles.name;
-        }
-      );
-      
-      this.load();
-      
-    }
-    else{
-      this.showUsers = false;
-    }
+  
+    
 
   }
 
@@ -94,7 +98,7 @@ export class UsersComponent implements OnInit {
   delete(value:{index: number,target: User})
   {
     this.users.splice(value.index,1);
-    this.usersService.delete(value.target.id!);
+    this.usersService.delete(value.target.id!).subscribe();
   }
 
   update(body : User)

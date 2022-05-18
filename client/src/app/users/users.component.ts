@@ -27,7 +27,11 @@ export class UsersComponent implements OnInit,OnChanges {
     private customersService:CustomerService
     ){}
 
+<<<<<<< HEAD
     ngOnChanges(): void {
+=======
+  ngOnChanges(): void {
+>>>>>>> 0ee71307d25cebaa727866b98763e7200b15a409
       if(this.usersByCustomer.length !== 0)
       {
         this.showUsers = true;
@@ -45,11 +49,15 @@ export class UsersComponent implements OnInit,OnChanges {
       }
     }
 
+<<<<<<< HEAD
   ngOnInit(){
   
     
 
   }
+=======
+  ngOnInit(){}
+>>>>>>> 0ee71307d25cebaa727866b98763e7200b15a409
 
   async loadUsers(){
       await this.usersService.getUsers().then(

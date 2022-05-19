@@ -13,20 +13,8 @@ let UserController = class UserController {
     async create(user) {
         return this.userRepository.create(user);
     }
-    async count(where) {
-        return this.userRepository.count(where);
-    }
     async find(filter) {
         return this.userRepository.find(filter);
-    }
-    async updateAll(user, where) {
-        return this.userRepository.updateAll(user, where);
-    }
-    async findById(id, filter) {
-        return this.userRepository.findById(id, filter);
-    }
-    async updateById(id, user) {
-        await this.userRepository.updateById(id, user);
     }
     async replaceById(id, user) {
         await this.userRepository.replaceById(id, user);
@@ -56,17 +44,6 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:returntype", Promise)
 ], UserController.prototype, "create", null);
 tslib_1.__decorate([
-    (0, rest_1.get)('/users/count'),
-    (0, rest_1.response)(200, {
-        description: 'User model count',
-        content: { 'application/json': { schema: repository_1.CountSchema } },
-    }),
-    tslib_1.__param(0, rest_1.param.where(models_1.User)),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
-], UserController.prototype, "count", null);
-tslib_1.__decorate([
     (0, rest_1.get)('/users'),
     (0, rest_1.response)(200, {
         description: 'Array of User model instances',
@@ -84,57 +61,6 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [Object]),
     tslib_1.__metadata("design:returntype", Promise)
 ], UserController.prototype, "find", null);
-tslib_1.__decorate([
-    (0, rest_1.patch)('/users'),
-    (0, rest_1.response)(200, {
-        description: 'User PATCH success count',
-        content: { 'application/json': { schema: repository_1.CountSchema } },
-    }),
-    tslib_1.__param(0, (0, rest_1.requestBody)({
-        content: {
-            'application/json': {
-                schema: (0, rest_1.getModelSchemaRef)(models_1.User, { partial: true }),
-            },
-        },
-    })),
-    tslib_1.__param(1, rest_1.param.where(models_1.User)),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [models_1.User, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
-], UserController.prototype, "updateAll", null);
-tslib_1.__decorate([
-    (0, rest_1.get)('/users/{id}'),
-    (0, rest_1.response)(200, {
-        description: 'User model instance',
-        content: {
-            'application/json': {
-                schema: (0, rest_1.getModelSchemaRef)(models_1.User, { includeRelations: true }),
-            },
-        },
-    }),
-    tslib_1.__param(0, rest_1.param.path.number('id')),
-    tslib_1.__param(1, rest_1.param.filter(models_1.User, { exclude: 'where' })),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Number, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
-], UserController.prototype, "findById", null);
-tslib_1.__decorate([
-    (0, rest_1.patch)('/users/{id}'),
-    (0, rest_1.response)(204, {
-        description: 'User PATCH success',
-    }),
-    tslib_1.__param(0, rest_1.param.path.number('id')),
-    tslib_1.__param(1, (0, rest_1.requestBody)({
-        content: {
-            'application/json': {
-                schema: (0, rest_1.getModelSchemaRef)(models_1.User, { partial: true }),
-            },
-        },
-    })),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Number, models_1.User]),
-    tslib_1.__metadata("design:returntype", Promise)
-], UserController.prototype, "updateById", null);
 tslib_1.__decorate([
     (0, rest_1.put)('/users/{id}'),
     (0, rest_1.response)(204, {

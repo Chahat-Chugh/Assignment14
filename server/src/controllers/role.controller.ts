@@ -26,7 +26,7 @@ export class RoleController {
     public roleRepository : RoleRepository,
   ) {}
 
-  @post('/roles')
+  /* @post('/roles')
   @response(200, {
     description: 'Role model instance',
     content: {'application/json': {schema: getModelSchemaRef(Role)}},
@@ -45,7 +45,7 @@ export class RoleController {
     role: Omit<Role, 'id'>,
   ): Promise<Role> {
     return this.roleRepository.create(role);
-  }
+  } 
 
   @get('/roles/count')
   @response(200, {
@@ -57,6 +57,8 @@ export class RoleController {
   ): Promise<Count> {
     return this.roleRepository.count(where);
   }
+
+*/
 
   @get('/roles')
   @response(200, {
@@ -76,6 +78,23 @@ export class RoleController {
     return this.roleRepository.find(filter);
   }
 
+
+  @get('/roles/{id}')
+  @response(200, {
+    description: 'Role model instance',
+    content: {
+      'application/json': {
+        schema: getModelSchemaRef(Role, {includeRelations: true}),
+      },
+    },
+  })
+  async findById(
+    @param.path.string('id') id: string,
+    @param.filter(Role, {exclude: 'where'}) filter?: FilterExcludingWhere<Role>
+  ): Promise<Role> {
+    return this.roleRepository.findById(id, filter);
+  }
+/* 
   @patch('/roles')
   @response(200, {
     description: 'Role PATCH success count',
@@ -95,21 +114,6 @@ export class RoleController {
     return this.roleRepository.updateAll(role, where);
   }
 
-  @get('/roles/{id}')
-  @response(200, {
-    description: 'Role model instance',
-    content: {
-      'application/json': {
-        schema: getModelSchemaRef(Role, {includeRelations: true}),
-      },
-    },
-  })
-  async findById(
-    @param.path.string('id') id: string,
-    @param.filter(Role, {exclude: 'where'}) filter?: FilterExcludingWhere<Role>
-  ): Promise<Role> {
-    return this.roleRepository.findById(id, filter);
-  }
 
   @patch('/roles/{id}')
   @response(204, {
@@ -146,5 +150,5 @@ export class RoleController {
   })
   async deleteById(@param.path.number('id') id: number): Promise<void> {
     await this.roleRepository.deleteById(id);
-  }
+  } */
 }

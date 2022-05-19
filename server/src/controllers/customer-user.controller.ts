@@ -45,7 +45,7 @@ export class CustomerUserController {
     return this.customerRepository.customerUsers(id).find(filter);
   }
 
-  @post('/customers/{id}/users', {
+ /*  @post('/customers/{id}/users', {
     responses: {
       '200': {
         description: 'Customer model instance',
@@ -106,5 +106,5 @@ export class CustomerUserController {
     @param.query.object('where', getWhereSchemaFor(User)) where?: Where<User>,
   ): Promise<Count> {
     return this.customerRepository.customerUsers(id).delete(where);
-  }
+  } */
 }

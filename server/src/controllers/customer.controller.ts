@@ -47,7 +47,7 @@ export class CustomerController {
     return this.customerRepository.create(customer);
   }
 
-  @get('/customers/count')
+  /* @get('/customers/count')
   @response(200, {
     description: 'Customer model count',
     content: {'application/json': {schema: CountSchema}},
@@ -56,7 +56,7 @@ export class CustomerController {
     @param.where(Customer) where?: Where<Customer>,
   ): Promise<Count> {
     return this.customerRepository.count(where);
-  }
+  } */
 
   @get('/customers')
   @response(200, {
@@ -76,7 +76,7 @@ export class CustomerController {
     return this.customerRepository.find(filter);
   }
 
-  @patch('/customers')
+ /*  @patch('/customers')
   @response(200, {
     description: 'Customer PATCH success count',
     content: {'application/json': {schema: CountSchema}},
@@ -94,7 +94,7 @@ export class CustomerController {
   ): Promise<Count> {
     return this.customerRepository.updateAll(customer, where);
   }
-
+ */
   @get('/customers/{id}')
   @response(200, {
     description: 'Customer model instance',
@@ -111,7 +111,7 @@ export class CustomerController {
     return this.customerRepository.findById(id, filter);
   }
 
-  @patch('/customers/{id}')
+/*   @patch('/customers/{id}')
   @response(204, {
     description: 'Customer PATCH success',
   })
@@ -127,7 +127,7 @@ export class CustomerController {
     customer: Customer,
   ): Promise<void> {
     await this.customerRepository.updateById(id, customer);
-  }
+  } */
 
   @put('/customers/{id}')
   @response(204, {

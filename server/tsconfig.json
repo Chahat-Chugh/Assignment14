@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/tsconfig",
   "extends": "@loopback/build/config/tsconfig.common.json",
-  "types": ["mocha","node"],
+  "types": ["mocha","node","jasmine"],
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",
